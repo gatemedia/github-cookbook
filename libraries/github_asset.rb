@@ -60,7 +60,6 @@ module GithubCB
 
     # @param [String] filepath
     def file_checksum filepath
-      puts filepath
       Digest::SHA256.file(filepath.to_s).hexdigest
     end
 
@@ -125,6 +124,7 @@ module GithubCB
         end
       end
     rescue GithubCB::ChecksumMismatch => ex
+      FileUtils.rm_rf(options[:path])
       puts "Failed Checksum, Retries left #{options[:retries]}"
       if options[:retries] <= 0
         fail ex
