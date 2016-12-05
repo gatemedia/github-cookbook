@@ -96,6 +96,9 @@ module GithubCB
         end
         download options
       end
+    rescue Exception => ex
+      FileUtils.rm_rf(options[:path])
+      fail ex
     ensure
       file.close unless file.nil?
     end
