@@ -98,6 +98,7 @@ module GithubCB
       FileUtils.mkdir_p(::File.dirname(options[:path]))
       file = ::File.open(options[:path], 'wb')
 
+      puts "Downloading asset..."
       open(res['location']) { |source| IO.copy_stream(source, file) }
 
       unless options[:checksum].nil?
