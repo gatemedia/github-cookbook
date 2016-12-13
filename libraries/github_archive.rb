@@ -56,6 +56,7 @@ module GithubCB
       FileUtils.mkdir_p(File.dirname(local_archive_path))
       file = ::File.open(local_archive_path, "wb")
 
+      Chef::Log.info "Downloading github archive..."
       open(download_uri, http_basic_authentication: [options[:user], options[:token]]) do |source|
         IO.copy_stream(source, file)
       end
