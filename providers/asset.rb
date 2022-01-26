@@ -18,10 +18,12 @@ action :download do
   if Chef::Resource::ChefGem.instance_methods(false).include?(:compile_time)
     chef_gem "octokit" do
       compile_time true
+      version "4.21.0"
     end
   else
     chef_gem "octokit" do
       action :nothing
+      version "4.21.0"
     end.run_action(:install)
   end
 
