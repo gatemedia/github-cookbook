@@ -99,10 +99,13 @@ module GithubCB
       file = ::File.open(options[:path], 'wb')
 
       puts "Downloading github asset..."
-      open(res['location']) { |source| IO.copy_stream(source, file) }
+      bytes = URI.open(res['location']) { |source| IO.copy_stream(source, file) }
+      puts "#{bytes} bytes written..."
+      file.flush
 
       unless options[:checksum].nil?
         checksum = file_checksum(options[:path])
+        puts "Validating checksum at #{options[:path]}. Provided: #{options[:checksum]}. Computed: #{checksum}"
         fail GithubCB::ChecksumMismatch.new(options[:checksum], checksum) unless valid_checksum? options[:checksum], checksum
       end
 
