@@ -11,6 +11,9 @@ property :owner, String
 property :group, String
 property :extract_to, String, required: true
 property :force, [true, false], default: false
+property :retries, Integer, default: 2
+property :retry_delay, Integer, default: 1
+property :checksum, String
 
 action :extract do
   unless new_resource.force || archive.downloaded?
@@ -18,7 +21,10 @@ action :extract do
       archive.download(
         user: new_resource.github_user,
         token: new_resource.github_token,
-        force: new_resource.force
+        force: new_resource.force,
+        retries: new_resource.retries,
+        retry_delay: new_resource.retry_delay,
+        checksum: new_resource.checksum
       )
     end
   end

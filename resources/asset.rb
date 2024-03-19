@@ -11,6 +11,9 @@ property :owner, String
 property :group, String
 property :force, [true, false], default: false
 property :extract_to, String, required: [:extract]
+property :retries, Integer, default: 2
+property :retry_delay, Integer, default: 1
+property :checksum, String
 
 action :download do
   do_download
@@ -54,7 +57,10 @@ action_class do
           user: new_resource.github_user,
           token: new_resource.github_token,
           force: new_resource.force,
-          path: asset_path
+          path: asset_path,
+          retries: new_resource.retries,
+          retry_delay: new_resource.retry_delay,
+          checksum: new_resource.checksum
         )
       end
     end

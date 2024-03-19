@@ -24,12 +24,22 @@ The following resources are provided:
 * [asset](documentation/asset.md)
 * [deploy](documentation/deploy.md)
 
+- **name** - name of the asset to download (name attribute)
+- **release** - name of the release the asset is a part of
+- **repo** - repository the release is a part of (required for private repositories)
+- **github_token** - Github token to perform the download with (required for private repositories)
+- **owner** - owner of the downloaded asset on disk
+- **group** - group of the downloaded asset on disk
+- **force** - force downloading even if the asset already exists on disk
+- **retries** - number of times to retry download
+- **retry_delay** - number of seconds between attempts to download file
+- **checksum** - SHA-256 of file, if the checksum does not match, the file is not used
+
 ## Contributors
 
 This project exists thanks to all the people who [contribute.](https://opencollective.com/sous-chefs/contributors.svg?width=890&button=false)
 
 ### Backers
-
 Thank you to all our backers!
 
 ![https://opencollective.com/sous-chefs#backers](https://opencollective.com/sous-chefs/backers.svg?width=600&avatarHeight=40)

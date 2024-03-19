@@ -12,6 +12,9 @@ property :owner, String
 property :group, String
 property :shared_directories, Array, default: %w(pids log)
 property :force, [true, false], default: false
+property :retries, Integer, default: 2
+property :retry_delay, Integer, default: 1
+property :checksum, String
 
 property :configure, Proc
 property :before_migrate, Proc
@@ -64,6 +67,9 @@ action :deploy do
     host         new_resource.host
     extract_to   deploy_path
     force        should_force
+    retries      new_resource.retries
+    retry_delay  new_resource.retry_delay
+    checksum     new_resource.checksum
 
     if should_force
       action [ :delete, :extract ]
