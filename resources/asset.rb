@@ -16,6 +16,10 @@ property :retry_delay, Integer, default: 1
 property :checksum, String
 
 action :download do
+  chef_gem "octokit" do
+    compile_time true
+  end
+
   do_download
 end
 
