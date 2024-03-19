@@ -98,7 +98,7 @@ module GithubCB
       FileUtils.mkdir_p(::File.dirname(options[:path]))
       file = ::File.open(options[:path], 'wb')
 
-      Chef::Log.info "Downloading github asset..."
+      puts "Downloading github asset..."
       open(res['location']) { |source| IO.copy_stream(source, file) }
 
       unless options[:checksum].nil?
