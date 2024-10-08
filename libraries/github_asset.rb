@@ -45,12 +45,12 @@ module GithubCB
     def asset_url(options)
       require 'octokit'
 
-      Octokit.configure do |c|
+      ::Octokit.configure do |c|
         c.login        = options[:user]
         c.access_token = options[:token]
       end
 
-      release = Octokit.releases(fqrn).find do |release|
+      release = ::Octokit.releases(fqrn).find do |release|
         release.tag_name == tag_name
       end
 
