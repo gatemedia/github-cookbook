@@ -4,6 +4,14 @@ This file is used to list changes made in each version of the GitHub cookbook.
 
 ## Unreleased
 
+## 2.0.1
+
+Use `Octokit.release_for_tag` to support old releases
+
+## 2.0.0
+
+Compatible with Ruby 3
+
 ## 1.1.10 - *2023-10-30*
 
 ## 1.1.9 - *2023-10-30*
